@@ -14,13 +14,13 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_add"
+        android:src="@drawable/ic_action_adicionar_aluno"
         android:focusable="true" />
 
     <ListView
         android:id="@+id/activity_main_lista_de_alunos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
     </ListView>
 </RelativeLayout>

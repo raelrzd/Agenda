@@ -1,18 +1,18 @@
 package rezende.israel.alura;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +20,7 @@ public class MainActivity extends Activity {
         Toast.makeText(this, "Seja bem vindo!! App em construção...", Toast.LENGTH_LONG).show();
         // APRESENTA ARQUIVO DE ACTIVITY
         setContentView(R.layout.activity_main);
+        setTitle("Lista De Alunos");
 
         List<String> alunos = new ArrayList<>(
                 Arrays.asList("Raelzera", "Guizera", "Teteuzera", "Harold"));
