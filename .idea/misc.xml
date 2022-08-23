@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_formulario_aluno.xml" value="0.3496376811594203" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26201269265639165" />
+        <entry key="app/src/main/res/layout/lista_alunos_activity.xml" value="0.32274247491638797" />
       </map>
     </option>
   </component>
