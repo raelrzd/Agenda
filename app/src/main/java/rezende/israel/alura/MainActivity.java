@@ -25,6 +25,6 @@ public class MainActivity extends Activity {
                 Arrays.asList("Raelzera", "Guizera", "Teteuzera"));
         ListView listaDeAlunos = findViewById(R.id.activity_main_lista_de_alunos);
         listaDeAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,alunos));
-            
+
     }
 }
