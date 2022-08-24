@@ -25,7 +25,7 @@
         android:inputType="textEmailAddress"
         android:hint="E-mail"/>
 
-    <Button
+    <Button android:id="@+id/activity_formulario_alunos_botao_salvar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Salvar"
