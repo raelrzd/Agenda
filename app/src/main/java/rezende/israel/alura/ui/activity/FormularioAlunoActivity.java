@@ -34,10 +34,14 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         configuraBotaoSalvar();
 
         Intent dados = getIntent();
-        aluno = (Aluno) dados.getSerializableExtra("aluno");
-        campoNome.setText(aluno.getNome());
-        campoTelefone.setText(aluno.getTelefone());
-        campoEmail.setText(aluno.getEmail());
+        if (dados.hasExtra("aluno")) {
+            aluno = (Aluno) dados.getSerializableExtra("aluno");
+            campoNome.setText(aluno.getNome());
+            campoTelefone.setText(aluno.getTelefone());
+            campoEmail.setText(aluno.getEmail());
+        } else {
+            aluno = new Aluno();
+        }
 
 
     }
@@ -47,19 +51,17 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         botaoSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Aluno alunoCriado = preencheAluno();
-//                salvaAluno(alunoCriado);
                 preencheAluno();
-                dao.edita(aluno);
+                if (aluno.temIdValido()) {
+                    dao.edita(aluno);
+                } else {
+                    dao.salva(aluno);
+                }
                 finish();
             }
         });
     }
 
-    private void salvaAluno(Aluno alunoCriado) {
-        dao.salva(alunoCriado);
-        finish();
-    }
 
     private void preencheAluno() {
         String nome = campoNome.getText().toString();
@@ -68,7 +70,6 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         aluno.setNome(nome);
         aluno.setTelefone(telefone);
         aluno.setEmail(email);
-//        Aluno alunoCriado = new Aluno(nome, telefone, email);
         Toast.makeText(FormularioAlunoActivity.this, "Registro de Aluno Salvo!", Toast.LENGTH_SHORT).show();
 
     }
