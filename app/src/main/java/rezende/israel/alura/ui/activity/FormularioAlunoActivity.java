@@ -1,5 +1,6 @@
 package rezende.israel.alura.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,7 @@ public class FormularioAlunoActivity extends AppCompatActivity {
     private EditText campoTelefone;
     private EditText campoEmail;
     private final AlunoDAO dao = new AlunoDAO();
+    private Aluno aluno;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +33,13 @@ public class FormularioAlunoActivity extends AppCompatActivity {
 
         configuraBotaoSalvar();
 
+        Intent dados = getIntent();
+        aluno = (Aluno) dados.getSerializableExtra("aluno");
+        campoNome.setText(aluno.getNome());
+        campoTelefone.setText(aluno.getTelefone());
+        campoEmail.setText(aluno.getEmail());
+
+
     }
 
     private void configuraBotaoSalvar() {
@@ -38,8 +47,11 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         botaoSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Aluno alunoCriado = criaAluno();
-                salvaAluno(alunoCriado);
+//                Aluno alunoCriado = preencheAluno();
+//                salvaAluno(alunoCriado);
+                preencheAluno();
+                dao.edita(aluno);
+                finish();
             }
         });
     }
@@ -49,14 +61,16 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         finish();
     }
 
-    @NonNull
-    private Aluno criaAluno() {
+    private void preencheAluno() {
         String nome = campoNome.getText().toString();
         String telefone = campoTelefone.getText().toString();
         String email = campoEmail.getText().toString();
-        Aluno alunoCriado = new Aluno(nome, telefone, email);
+        aluno.setNome(nome);
+        aluno.setTelefone(telefone);
+        aluno.setEmail(email);
+//        Aluno alunoCriado = new Aluno(nome, telefone, email);
         Toast.makeText(FormularioAlunoActivity.this, "Registro de Aluno Salvo!", Toast.LENGTH_SHORT).show();
-        return alunoCriado;
+
     }
 
     private void inicializacaoDosCampos() {

@@ -14,8 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 import rezende.israel.alura.R;
 import rezende.israel.alura.dao.AlunoDAO;
+import rezende.israel.alura.modelo.Aluno;
 
 public class ListaAlunosActivity extends AppCompatActivity {
     public static final String TITULO_APPBAR = "Lista De Alunos";
@@ -30,8 +33,9 @@ public class ListaAlunosActivity extends AppCompatActivity {
         // CHAMA ARQUIVO DE LAYOUT DA ACTIVITY
         setContentView(R.layout.lista_alunos_activity);
         setTitle(TITULO_APPBAR);
-
         configuraFabNovoAluno();
+        dao.salva(new Aluno("Rael", "14997225375", "rael@gmail.com"));
+        dao.salva(new Aluno("Gui", "1111111111", "gui@gmail.com"));
 
     }
 
@@ -57,11 +61,16 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     private void configuraLista() {
         ListView listaDeAlunos = findViewById(R.id.activity_lista_de_alunos_listview);
-        listaDeAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dao.todos()));
+        List<Aluno> alunos = dao.todos();
+        listaDeAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos));
         listaDeAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posicao, long id) {
-                Log.i("posicao do aluno", "" + posicao);
+                Aluno alunoEscolhido = alunos.get(posicao);
+                Intent vaiProFormularioActivity = new Intent(ListaAlunosActivity.this, FormularioAlunoActivity.class);
+                vaiProFormularioActivity.putExtra("aluno", alunoEscolhido);
+                startActivity(vaiProFormularioActivity);
+                Log.i("idAluno", String.valueOf(alunoEscolhido.getId()));
             }
         });
 
