@@ -1,5 +1,7 @@
 package rezende.israel.alura.dao;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,21 +14,30 @@ public class AlunoDAO {
     public void salva(Aluno aluno) {
         aluno.setId(contadorDeIds);
         alunos.add(aluno);
+        atualizaIds();
+    }
+
+    private void atualizaIds() {
         contadorDeIds++;
     }
 
     public void edita(Aluno aluno) {
-        Aluno alunoEncontrado = null;
-        for (Aluno a:
-             alunos) {
-            if (aluno.getId() == a.getId()) {
-                alunoEncontrado = a;
-            }
-        }
-        if (alunoEncontrado != null){
+        Aluno alunoEncontrado = buscaAlunoPeloId(aluno);
+        if (alunoEncontrado != null) {
             int posicaoDoAluno = alunos.indexOf(alunoEncontrado);
             alunos.set(posicaoDoAluno, aluno);
         }
+    }
+
+    @Nullable
+    private Aluno buscaAlunoPeloId(Aluno aluno) {
+        for (Aluno a :
+                alunos) {
+            if (aluno.getId() == a.getId()) {
+                return a;
+            }
+        }
+        return null;
     }
 
     public List<Aluno> todos() {

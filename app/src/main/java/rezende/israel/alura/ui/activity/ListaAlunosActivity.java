@@ -1,5 +1,7 @@
 package rezende.israel.alura.ui.activity;
 
+import static rezende.israel.alura.ui.activity.ConstantesActivities.CHAVE_ALUNO;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,12 +46,12 @@ public class ListaAlunosActivity extends AppCompatActivity {
         botaoAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                abreFormularioAlunoActivity();
+                abreFormularioModoInsereAluno();
             }
         });
     }
 
-    private void abreFormularioAlunoActivity() {
+    private void abreFormularioModoInsereAluno() {
         startActivity(new Intent(this, FormularioAlunoActivity.class));
     }
 
@@ -62,17 +64,29 @@ public class ListaAlunosActivity extends AppCompatActivity {
     private void configuraLista() {
         ListView listaDeAlunos = findViewById(R.id.activity_lista_de_alunos_listview);
         List<Aluno> alunos = dao.todos();
-        listaDeAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos));
+        configuraAdapter(listaDeAlunos, alunos);
+        configuraListenerDeCliquePorItem(listaDeAlunos, alunos);
+
+    }
+
+    private void configuraListenerDeCliquePorItem(ListView listaDeAlunos, List<Aluno> alunos) {
         listaDeAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int posicao, long id) {
                 Aluno alunoEscolhido = alunos.get(posicao);
-                Intent vaiProFormularioActivity = new Intent(ListaAlunosActivity.this, FormularioAlunoActivity.class);
-                vaiProFormularioActivity.putExtra("aluno", alunoEscolhido);
-                startActivity(vaiProFormularioActivity);
-                Log.i("idAluno", String.valueOf(alunoEscolhido.getId()));
+                abreFormularioModoEditaAluno(alunoEscolhido);
             }
         });
+    }
 
+    private void abreFormularioModoEditaAluno(Aluno alunoEscolhido) {
+        Intent vaiProFormularioActivity = new Intent(ListaAlunosActivity.this, FormularioAlunoActivity.class);
+        vaiProFormularioActivity.putExtra(CHAVE_ALUNO, alunoEscolhido);
+        startActivity(vaiProFormularioActivity);
+        Log.i("idAluno", String.valueOf(alunoEscolhido.getId()));
+    }
+
+    private void configuraAdapter(ListView listaDeAlunos, List<Aluno> alunos) {
+        listaDeAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos));
     }
 }
