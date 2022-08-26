@@ -55,7 +55,7 @@ public class Aluno implements Serializable {
         return id;
     }
 
-    public boolean temIdValido(){
+    public boolean temIdValido() {
         return id > 0;
     }
 
