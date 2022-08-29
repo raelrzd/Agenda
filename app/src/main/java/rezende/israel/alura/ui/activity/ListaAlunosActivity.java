@@ -6,13 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,17 +18,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import rezende.israel.alura.R;
 import rezende.israel.alura.dao.AlunoDAO;
 import rezende.israel.alura.modelo.Aluno;
+import rezende.israel.alura.ui.adapter.ListaAlunosAdapter;
 
 public class ListaAlunosActivity extends AppCompatActivity {
     public static final String TITULO_APPBAR = "Lista De Alunos";
     private final AlunoDAO dao = new AlunoDAO();
-    private ArrayAdapter<Aluno> adapter;
+    private ListaAlunosAdapter adapter;
 
 
     @Override
@@ -85,6 +79,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        configuraLista();
         atualizaAlunos();
     }
 
@@ -138,30 +133,8 @@ public class ListaAlunosActivity extends AppCompatActivity {
     }
 
     private void configuraAdapter(ListView listaDeAlunos) {
-        adapter = new ArrayAdapter<>(this, R.layout.item_aluno);
-        listaDeAlunos.setAdapter(new BaseAdapter() {
-            private final List<Aluno> alunos = new ArrayList<>();
+        adapter = new ListaAlunosAdapter(this);
+        listaDeAlunos.setAdapter(adapter);
 
-            @Override
-            public int getCount() {
-                return alunos.size();
-            }
-
-            @Override
-            public Object getItem(int posicao) {
-                return alunos.get(posicao);
-            }
-
-            @Override
-            public long getItemId(int posicao) {
-                return alunos.get(posicao).getId();
-            }
-
-            @Override
-            public View getView(int i, View view, ViewGroup viewGroup) {
-                View viewCriada = LayoutInflater.from(ListaAlunosActivity.this).inflate(R.layout.item_aluno, viewGroup);
-                return viewCriada;
-            }
-        });
     }
 }
