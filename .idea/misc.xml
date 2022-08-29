@@ -5,7 +5,9 @@
       <map>
         <entry key="app/src/main/res/layout/activity_formulario_aluno.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26201269265639165" />
+        <entry key="app/src/main/res/layout/item_aluno.xml" value="0.33469202898550726" />
         <entry key="app/src/main/res/layout/lista_alunos_activity.xml" value="0.32274247491638797" />
+        <entry key="app/src/main/res/menu/activity_formulario_aluno_menu.xml" value="0.35625" />
         <entry key="app/src/main/res/menu/activity_formulario_aluno_menu_salvar.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/menu/activity_lista_alunos_menu.xml" value="0.35520833333333335" />
       </map>
