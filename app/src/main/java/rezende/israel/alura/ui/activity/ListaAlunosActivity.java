@@ -45,7 +45,6 @@ public class ListaAlunosActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.activity_lista_alunos_menu, menu);
     }
 
-
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
@@ -54,7 +53,6 @@ public class ListaAlunosActivity extends AppCompatActivity {
         }
         return super.onContextItemSelected(item);
     }
-
 
     private void configuraFabNovoAluno() {
         FloatingActionButton botaoAdicionar = findViewById(R.id.activity_lista_alunos_fab_novo_aluno);
@@ -70,7 +68,6 @@ public class ListaAlunosActivity extends AppCompatActivity {
         super.onResume();
         listaAlunosView.atualizaAlunos();
     }
-
 
     private void configuraLista() {
         ListView listaDeAlunos = findViewById(R.id.activity_lista_de_alunos_listview);
