@@ -1,5 +1,7 @@
 package rezende.israel.alura.modelo;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class Aluno implements Serializable {
@@ -42,6 +44,7 @@ public class Aluno implements Serializable {
         return email;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return nome;

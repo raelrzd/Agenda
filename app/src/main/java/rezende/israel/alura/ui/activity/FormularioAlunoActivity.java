@@ -17,6 +17,7 @@ import rezende.israel.alura.R;
 import rezende.israel.alura.dao.AlunoDAO;
 import rezende.israel.alura.modelo.Aluno;
 
+@SuppressWarnings("ALL")
 public class FormularioAlunoActivity extends AppCompatActivity {
     public static final String TITULO_APPBAR_NOVO_ALUNO = "Novo Aluno";
     private static final String TITULO_APPBAR_EDITA_ALUNO = "Edita Aluno";
