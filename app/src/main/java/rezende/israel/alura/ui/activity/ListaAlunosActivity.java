@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,8 +33,6 @@ public class ListaAlunosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // BALÃO INFERIOR AO ABRIR O APP
-        Toast.makeText(this, "Seja bem vindo!!", Toast.LENGTH_LONG).show();
         // CHAMA ARQUIVO DE LAYOUT DA ACTIVITY
         setContentView(R.layout.lista_alunos_activity);
         setTitle(TITULO_APPBAR);
