@@ -1,12 +1,13 @@
 package rezende.israel.alura.ui;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
+
 
 import rezende.israel.alura.dao.AlunoDAO;
 import rezende.israel.alura.modelo.Aluno;
